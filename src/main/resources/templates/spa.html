@@ -12,11 +12,9 @@
 	<script th:inline="javascript">
 	/*<![CDATA[*/
 		
-		var javaObj = {
-			message: [[${message}]]	
+		var proxyObj = {
+				accessToken: [[${accessToken}]]	
 		}
-
-	    console.log(javaObj.message);
 	
 	/*]]>*/
 	</script>     
