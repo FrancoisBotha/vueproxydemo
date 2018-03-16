@@ -13,6 +13,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomAuthenticationProvider authProvider;
+	
+	@Autowired
+	private CustomLogoutSuccessHandler customLogoutSuccessHandler;	
 
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
@@ -25,7 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					    .loginPage("/login")
 						.defaultSuccessUrl("/app")			
 						.permitAll().and()
-					.logout().permitAll();
+					.logout()
+					    .logoutSuccessHandler(customLogoutSuccessHandler)
+                     	.deleteCookies("remove")
+                    	.invalidateHttpSession(true)
+                    	.logoutUrl("/logout")
+                    	.logoutSuccessUrl("/")
+                    .permitAll()
+                    .and().csrf().disable();
 			// @formatter:on
 	}
 

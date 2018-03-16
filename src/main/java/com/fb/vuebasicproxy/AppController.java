@@ -32,7 +32,7 @@ public class AppController  {
 			accessToken = "Not Defined";
 		}
 		
-		return new ModelAndView("spa", "message", "Access Token:" + accessToken.toString());
+		return new ModelAndView("spa", "accessToken", accessToken.toString());
 	}
 
 }
